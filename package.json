@@ -1,0 +1,26 @@
+{
+  "name": "ktx-management",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hệ thống Quản lý Ký túc xá - Nhóm 10 - IT3180",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace server",
+    "dev:client": "npm run dev --workspace client",
+    "seed": "npm run seed --workspace server",
+    "test": "npm test --workspace server",
+    "build": "npm run build --workspace client",
+    "start": "npm run start --workspace server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}
