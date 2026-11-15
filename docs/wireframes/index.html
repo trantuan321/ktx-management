@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wireframe – QLKTX Nhóm 10</title>
+<style>
+  :root{
+    --ink:#1f2937; --line:#94a3b8; --soft:#e2e8f0; --bg:#f8fafc;
+    --fill:#f1f5f9; --accent:#2563eb; --dark:#0f172a; --muted:#64748b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+  header.top{padding:32px 28px 18px;border-bottom:1px solid var(--soft);background:#fff}
+  header.top h1{margin:0 0 4px;font-size:24px}
+  header.top p{margin:0;color:var(--muted)}
+  nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding:16px 28px;background:#fff;border-bottom:1px solid var(--soft);position:sticky;top:0;z-index:5}
+  nav.toc a{font-size:12px;padding:5px 10px;border:1px solid var(--soft);border-radius:999px;color:var(--ink);text-decoration:none;background:var(--bg)}
+  nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+  main{max-width:1180px;margin:0 auto;padding:28px}
+  section{margin-bottom:44px}
+  section>h2{font-size:18px;margin:0 0 4px}
+  section>.note{color:var(--muted);font-size:12.5px;margin:0 0 14px}
+  .frame{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+  .bar{height:26px;background:var(--fill);border-bottom:1px solid var(--soft);display:flex;align-items:center;gap:6px;padding:0 10px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line)}
+  .shell{display:flex;min-height:460px}
+  .side{width:170px;background:var(--dark);color:#cbd5e1;padding:14px 10px;font-size:11.5px;flex:none;display:flex;flex-direction:column;gap:2px}
+  .side .brand{color:#fff;font-weight:700;font-size:13px;padding:6px 8px 14px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:8px}
+  .side .grp{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#64748b;padding:8px 8px 3px}
+  .side .item{padding:6px 8px;border-radius:6px}
+  .side .item.on{background:var(--accent);color:#fff}
+  .side .spacer{flex:1}
+  .side .out{border-top:1px solid rgba(255,255,255,.12);padding-top:8px}
+  .main{flex:1;min-width:0;background:var(--bg)}
+  .top{height:44px;background:#fff;border-bottom:1px solid var(--soft);display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:12px}
+  .top .tag{border:1px solid var(--soft);border-radius:999px;padding:2px 9px;font-size:10.5px;color:var(--muted)}
+  .body{padding:16px}
+  .ph{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .ph h3{margin:0;font-size:17px}
+  .ph p{margin:2px 0 0;font-size:11.5px;color:var(--muted)}
+  .btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 11px;font-size:11.5px;font-weight:600;white-space:nowrap}
+  .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.sm{padding:3px 7px;font-size:10.5px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .stat{border:1px solid var(--soft);border-radius:8px;padding:9px 10px;background:#fff}
+  .stat b{display:block;font-size:17px}
+  .stat span{font-size:10.5px;color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .card{border:1px solid var(--soft);border-radius:8px;background:#fff;overflow:hidden}
+  .card .ch{padding:8px 11px;border-bottom:1px solid var(--soft);font-weight:700;font-size:11.5px;display:flex;justify-content:space-between}
+  .card .cb{padding:11px}
+  .filters{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .fld{border:1px solid var(--line);border-radius:6px;background:#fff;padding:6px 9px;font-size:11px;color:var(--muted);min-width:130px}
+  .table{border:1px solid var(--soft);border-radius:8px;overflow:hidden;background:#fff}
+  .row{display:grid;grid-template-columns:1.2fr 1.4fr .8fr .9fr 1fr;gap:6px;padding:7px 10px;border-bottom:1px solid var(--soft);font-size:11px;align-items:center}
+  .row:last-child{border-bottom:none}
+  .row.h{background:#f8fafc;font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:#475569;font-weight:700}
+  .badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 7px;font-size:9.5px;font-weight:700;background:var(--fill)}
+  .badge.g{background:#dcfce7;border-color:#86efac;color:#15803d}
+  .badge.y{background:#fef3c7;border-color:#fcd34d;color:#b45309}
+  .badge.r{background:#fee2e2;border-color:#fca5a5;color:#b91c1c}
+  .bars{height:8px;border:1px solid var(--soft);border-radius:99px;background:var(--fill);overflow:hidden}
+  .bars i{display:block;height:100%;width:42%;background:var(--accent)}
+  .line{height:8px;background:var(--fill);border-radius:4px;margin:6px 0}
+  .line.w60{width:60%}.line.w40{width:40%}.line.w80{width:80%}
+  .modalwrap{background:#eef2f7;padding:18px;border-radius:8px;display:flex;justify-content:center}
+  .modal{width:min(620px,100%);background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden;box-shadow:0 16px 40px rgba(15,23,42,.18)}
+  .modal .mh{padding:10px 13px;border-bottom:1px solid var(--soft);font-weight:700;font-size:12.5px;display:flex;justify-content:space-between}
+  .modal .mb{padding:13px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .modal .mf{padding:9px 13px;border-top:1px solid var(--soft);background:#f8fafc;display:flex;justify-content:flex-end;gap:7px}
+  .input{border:1px solid var(--line);border-radius:6px;height:26px;background:#fff}
+  .input.area{height:52px}
+  .lbl{font-size:9.5px;color:var(--muted);margin-bottom:3px;display:block}
+  .span2{grid-column:span 2}
+  .roomgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .room{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+  .room .rh{padding:7px 9px;background:var(--fill);border-bottom:1px solid var(--soft);display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:11.5px}
+  .room .rb{padding:8px 9px;display:grid;gap:4px;font-size:10.5px;color:var(--muted)}
+  .room .rb .r{display:flex;justify-content:space-between}
+  .room .rb .r b{color:var(--ink)}
+  .login{min-height:460px;background:var(--dark);display:grid;place-items:center;padding:24px}
+  .logincard{width:290px;background:#fff;border-radius:12px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .logincard h3{margin:0;font-size:16px}
+  .logincard .sub{font-size:10.5px;color:var(--muted);margin:2px 0 16px}
+  .demo{border:1px dashed var(--line);border-radius:6px;padding:6px 8px;font-size:10px;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between}
+  .foot{max-width:1180px;margin:0 auto;padding:0 28px 40px;color:var(--muted);font-size:12px}
+  @media(max-width:820px){.side{display:none}.stats{grid-template-columns:1fr 1fr}.roomgrid{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+  @media print{nav.toc{display:none}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Wireframe low-fidelity – Hệ thống Quản lý Ký túc xá</h1>
+  <p>Nhóm 10 · IT3180 · Sprint 1 · Người thiết kế: Ngô Đức Thắng · Phiên bản 1.0 (04/11/2026)</p>
+</header>
+
+<nav class="toc">
+  <a href="#wf01">WF-01 Đăng nhập</a>
+  <a href="#wf02">WF-02 Dashboard quản lý</a>
+  <a href="#wf03">WF-03 Dashboard sinh viên</a>
+  <a href="#wf04">WF-04 Tòa nhà</a>
+  <a href="#wf05">WF-05 Phòng &amp; giường</a>
+  <a href="#wf06">WF-06 Sinh viên</a>
+  <a href="#wf07">WF-07 Duyệt đơn</a>
+  <a href="#wf08">WF-08 Phòng trống</a>
+  <a href="#wf09">WF-09 Đơn đăng ký</a>
+  <a href="#wf10">WF-10 Hồ sơ</a>
+  <a href="#wf11">WF-11 Người dùng</a>
+</nav>
+
+<main>
+
+<!-- WF-01 -->
+<section id="wf01">
+  <h2>WF-01 · Đăng nhập</h2>
+  <p class="note">Dùng chung cho cả 3 vai trò. Nút tài khoản demo tự điền form để phục vụ trình diễn.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="login">
+      <div class="logincard">
+        <h3>🏠 QLKTX</h3>
+        <div class="sub">Hệ thống Quản lý Ký túc xá · Nhóm 10</div>
+        <span class="lbl">Tên đăng nhập</span>
+        <div class="input" style="margin-bottom:8px"></div>
+        <span class="lbl">Mật khẩu</span>
+        <div class="input" style="margin-bottom:12px"></div>
+        <div class="btn pri" style="width:100%;text-align:center">Đăng nhập</div>
+        <div style="margin-top:14px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Tài khoản demo</div>
+        <div class="demo"><b>Quản trị viên</b><span>admin / Admin@123</span></div>
+        <div class="demo"><b>Quản lý KTX</b><span>quanly / QuanLy@123</span></div>
+        <div class="demo"><b>Sinh viên</b><span>sv01 / SinhVien@123</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-02 -->
+<section id="wf02">
+  <h2>WF-02 · Dashboard quản lý (manager / admin)</h2>
+  <p class="note">Thẻ số liệu, tỷ lệ lấp đầy, lối tắt nghiệp vụ và 5 đơn gần nhất.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX<br><span style="font-weight:400;font-size:9.5px;color:#94a3b8">Nhóm 10 · IT3180</span></div>
+        <div class="grp">Tổng quan</div><div class="item on">🏠 Trang chủ</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item">🏢 Tòa nhà</div><div class="item">🛏️ Phòng &amp; giường</div>
+        <div class="item">🎓 Sinh viên</div><div class="item">📝 Đơn đăng ký</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Trang chủ</b><br><span style="font-size:9.5px;color:var(--muted)">Hệ thống Quản lý Ký túc xá</span></span><span class="tag">Quản lý KTX · Phạm Hiền</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Xin chào, Phạm Hiền</h3><p>Tổng quan hoạt động ký túc xá trong kỳ hiện tại.</p></div><div style="display:flex;gap:6px"><div class="btn">Duyệt đơn đăng ký</div><div class="btn pri">Quản lý phòng</div></div></div>
+          <div class="stats">
+            <div class="stat"><b>3</b><span>🏢 Tòa nhà</span></div>
+            <div class="stat"><b>8</b><span>🛏️ Phòng</span></div>
+            <div class="stat"><b>36</b><span>🪑 Tổng giường</span></div>
+            <div class="stat"><b>4</b><span>🎓 Sinh viên nội trú</span></div>
+            <div class="stat"><b>32</b><span>🔎 Giường còn trống</span></div>
+            <div class="stat"><b>2</b><span>📝 Đơn chờ duyệt</span></div>
+          </div>
+          <div class="grid2">
+            <div class="card"><div class="ch"><span>Tỷ lệ lấp đầy</span><span class="badge">11.1%</span></div>
+              <div class="cb"><div class="bars"><i></i></div><div class="line w80"></div><div class="line w60"></div><div class="line w40"></div></div></div>
+            <div class="card"><div class="ch"><span>Lối tắt nghiệp vụ</span></div>
+              <div class="cb" style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <div class="btn">🏢 Tòa nhà</div><div class="btn">🛏️ Phòng</div><div class="btn">🎓 Sinh viên</div><div class="btn">📝 Đơn</div></div></div>
+          </div>
+          <div style="margin-top:12px" class="table">
+            <div class="row h"><span>Sinh viên</span><span>MSSV</span><span>Phòng</span><span>Ngày gửi</span><span>Trạng thái</span></div>
+            <div class="row"><span>Phạm Thị Dung</span><span>SV004</span><span>B101</span><span>06/11</span><span class="badge y">Chờ duyệt</span></div>
+            <div class="row"><span>Hoàng Văn Em</span><span>SV005</span><span>A102</span><span>07/11</span><span class="badge y">Chờ duyệt</span></div>
+            <div class="row"><span>Nguyễn Văn An</span><span>SV001</span><span>A101</span><span>02/11</span><span class="badge g">Đã duyệt</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-03 -->
+<section id="wf03">
+  <h2>WF-03 · Dashboard sinh viên</h2>
+  <p class="note">Sinh viên thấy phòng hiện tại, tòa nhà, MSSV, trạng thái đơn và lối tắt.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX<br><span style="font-weight:400;font-size:9.5px;color:#94a3b8">Nhóm 10 · IT3180</span></div>
+        <div class="grp">Tổng quan</div><div class="item on">🏠 Trang chủ</div>
+        <div class="grp">Dành cho sinh viên</div>
+        <div class="item">🔎 Phòng trống</div><div class="item">📝 Đơn đăng ký</div><div class="item">👤 Hồ sơ của tôi</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Trang chủ</b></span><span class="tag">Sinh viên · Nguyễn Văn An</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Xin chào, Nguyễn Văn An</h3><p>Thông tin nội trú và đơn đăng ký của bạn.</p></div><div class="btn pri">🔎 Tìm phòng trống</div></div>
+          <div class="stats" style="grid-template-columns:repeat(4,1fr)">
+            <div class="stat"><b>A101</b><span>🛏️ Phòng hiện tại · G1</span></div>
+            <div class="stat"><b>Tòa A</b><span>🏢 Tòa nhà</span></div>
+            <div class="stat"><b>SV001</b><span>🎓 MSSV · CNTT01</span></div>
+            <div class="stat"><b>0</b><span>📝 Đơn đang chờ</span></div>
+          </div>
+          <div class="grid2">
+            <div class="card"><div class="ch"><span>Đơn đăng ký gần nhất</span><span class="badge">Quản lý đơn →</span></div>
+              <div class="cb"><div class="line w80"></div><div class="line w60"></div><div class="line w80"></div><div class="line w40"></div></div></div>
+            <div class="card"><div class="ch"><span>Lối tắt</span></div>
+              <div class="cb" style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div class="btn">🔎 Phòng trống</div><div class="btn">📝 Đơn đăng ký</div><div class="btn">👤 Hồ sơ</div></div>
+              <div style="margin:8px 11px 11px;border:1px solid #bbf7d0;background:#f0fdf4;color:#166534;border-radius:6px;padding:7px 9px;font-size:10.5px">Bạn đang ở phòng <b>A101</b> · giường <b>G1</b> tại <b>Tòa nhà A</b>.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-04 -->
+<section id="wf04">
+  <h2>WF-04 · Quản lý tòa nhà</h2>
+  <p class="note">Bảng danh sách + modal thêm/sửa tòa nhà.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item on">🏢 Tòa nhà</div><div class="item">🛏️ Phòng &amp; giường</div><div class="item">🎓 Sinh viên</div><div class="item">📝 Đơn đăng ký</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Tòa nhà</b></span><span class="tag">Quản lý KTX</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Quản lý tòa nhà</h3><p>Thêm, sửa, xóa tòa nhà và theo dõi số phòng.</p></div><div class="btn pri">+ Thêm tòa nhà</div></div>
+          <div class="table">
+            <div class="row h" style="grid-template-columns:.7fr 1.6fr .9fr .7fr .7fr 1.2fr 1.1fr"><span>Mã</span><span>Tên</span><span>Giới tính</span><span>Tầng</span><span>Phòng</span><span>Địa chỉ</span><span>Thao tác</span></div>
+            <div class="row" style="grid-template-columns:.7fr 1.6fr .9fr .7fr .7fr 1.2fr 1.1fr"><span><b>A</b></span><span>Tòa nhà A</span><span class="badge">Nam</span><span>5</span><span>4</span><span>Khu 1</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.7fr 1.6fr .9fr .7fr .7fr 1.2fr 1.1fr"><span><b>B</b></span><span>Tòa nhà B</span><span class="badge r">Nữ</span><span>5</span><span>2</span><span>Khu 2</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.7fr 1.6fr .9fr .7fr .7fr 1.2fr 1.1fr"><span><b>C</b></span><span>Tòa nhà C</span><span class="badge">Hỗn hợp</span><span>3</span><span>2</span><span>Khu 3</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+          </div>
+          <div class="modalwrap" style="margin-top:14px">
+            <div class="modal">
+              <div class="mh"><span>Thêm tòa nhà</span><span>×</span></div>
+              <div class="mb">
+                <div><span class="lbl">Mã tòa nhà *</span><div class="input"></div></div>
+                <div><span class="lbl">Tên tòa nhà *</span><div class="input"></div></div>
+                <div><span class="lbl">Giới tính</span><div class="input"></div></div>
+                <div><span class="lbl">Số tầng *</span><div class="input"></div></div>
+                <div class="span2"><span class="lbl">Địa chỉ</span><div class="input"></div></div>
+                <div class="span2"><span class="lbl">Mô tả</span><div class="input area"></div></div>
+              </div>
+              <div class="mf"><span class="btn">Hủy</span><span class="btn pri">Lưu</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-05 -->
+<section id="wf05">
+  <h2>WF-05 · Phòng &amp; giường</h2>
+  <p class="note">Bộ lọc phòng trống, bảng phòng và modal quản lý giường của một phòng.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item">🏢 Tòa nhà</div><div class="item on">🛏️ Phòng &amp; giường</div><div class="item">🎓 Sinh viên</div><div class="item">📝 Đơn đăng ký</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Phòng &amp; giường</b></span><span class="tag">Quản lý KTX</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Quản lý phòng &amp; giường</h3><p>Thêm/sửa/xóa phòng, giường; theo dõi tình trạng trống/đầy.</p></div><div class="btn pri">+ Thêm phòng</div></div>
+          <div class="filters">
+            <div class="fld">Tòa nhà: Tất cả ▾</div><div class="fld">Trạng thái: Tất cả ▾</div>
+            <div class="fld" style="min-width:180px">🔍 Mã phòng, tên phòng…</div>
+            <div class="fld">☑ Chỉ phòng còn trống</div>
+          </div>
+          <div class="table">
+            <div class="row h" style="grid-template-columns:.6fr 1fr .5fr .6fr .6fr .7fr .9fr 1fr 1.5fr"><span>Tòa</span><span>Phòng</span><span>Tầng</span><span>SL</span><span>Đã ở</span><span>Trống</span><span>Giá</span><span>Trạng thái</span><span>Thao tác</span></div>
+            <div class="row" style="grid-template-columns:.6fr 1fr .5fr .6fr .6fr .7fr .9fr 1fr 1.5fr"><span>A</span><span><b>A101</b></span><span>1</span><span>4</span><span>2/4</span><span class="badge g">2 trống</span><span>1.200.000đ</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Giường</span> <span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.6fr 1fr .5fr .6fr .6fr .7fr .9fr 1fr 1.5fr"><span>C</span><span><b>C101</b></span><span>1</span><span>6</span><span>1/6</span><span class="badge g">5 trống</span><span>900.000đ</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Giường</span> <span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.6fr 1fr .5fr .6fr .6fr .7fr .9fr 1fr 1.5fr"><span>C</span><span><b>C102</b></span><span>1</span><span>4</span><span>0/4</span><span class="badge g">4 trống</span><span>900.000đ</span><span class="badge y">Bảo trì</span><span><span class="btn sm">Giường</span> <span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+          </div>
+          <div class="modalwrap" style="margin-top:14px">
+            <div class="modal">
+              <div class="mh"><span>Giường của phòng A101</span><span>×</span></div>
+              <div class="mb" style="display:block">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                  <span class="badge">Sức chứa 4 · hiện có 4 giường</span>
+                  <span style="display:flex;gap:6px"><span class="input" style="width:120px"></span><span class="btn pri sm">+ Thêm giường</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+                  <div style="border:1px solid #fca5a5;background:#fef2f2;border-radius:7px;padding:7px 9px;display:flex;justify-content:space-between;align-items:center"><span><b>G1</b> <span class="badge r">Đang ở</span></span></div>
+                  <div style="border:1px solid #fca5a5;background:#fef2f2;border-radius:7px;padding:7px 9px;display:flex;justify-content:space-between;align-items:center"><span><b>G2</b> <span class="badge r">Đang ở</span></span></div>
+                  <div style="border:1px solid var(--soft);border-radius:7px;padding:7px 9px;display:flex;justify-content:space-between;align-items:center"><span><b>G3</b> <span class="badge g">Trống</span></span><span class="btn sm">Bảo trì</span></div>
+                  <div style="border:1px solid var(--soft);border-radius:7px;padding:7px 9px;display:flex;justify-content:space-between;align-items:center"><span><b>G4</b> <span class="badge g">Trống</span></span><span class="btn sm">Bảo trì</span></div>
+                </div>
+              </div>
+              <div class="mf"><span class="btn">Đóng</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-06 -->
+<section id="wf06">
+  <h2>WF-06 · Hồ sơ sinh viên nội trú</h2>
+  <p class="note">Tra cứu theo MSSV, họ tên, lớp; bảng hiển thị phòng/giường hiện tại.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item">🏢 Tòa nhà</div><div class="item">🛏️ Phòng &amp; giường</div><div class="item on">🎓 Sinh viên</div><div class="item">📝 Đơn đăng ký</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Sinh viên</b></span><span class="tag">Quản lý KTX</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Quản lý hồ sơ sinh viên</h3><p>Thêm, sửa và tra cứu theo MSSV, họ tên hoặc lớp.</p></div><div class="btn pri">+ Thêm sinh viên</div></div>
+          <div class="filters">
+            <div class="fld" style="min-width:180px">🔍 MSSV, họ tên, lớp…</div>
+            <div class="fld">Lớp: CNTT01</div><div class="fld">Trạng thái: Tất cả ▾</div><div class="fld">Nội trú: Tất cả ▾</div>
+          </div>
+          <div class="table">
+            <div class="row h" style="grid-template-columns:.8fr 1.4fr .7fr 1fr 1.2fr 1.3fr .9fr 1.1fr"><span>MSSV</span><span>Họ tên</span><span>Lớp</span><span>Khoa</span><span>Liên hệ</span><span>Phòng/giường</span><span>Trạng thái</span><span>Thao tác</span></div>
+            <div class="row" style="grid-template-columns:.8fr 1.4fr .7fr 1fr 1.2fr 1.3fr .9fr 1.1fr"><span><b>SV001</b></span><span>Nguyễn Văn An</span><span>CNTT01</span><span>CNTT</span><span>0912345671</span><span><b>A101</b> · G1</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.8fr 1.4fr .7fr 1fr 1.2fr 1.3fr .9fr 1.1fr"><span><b>SV004</b></span><span>Phạm Thị Dung</span><span>KT02</span><span>Kinh tế</span><span>0912345674</span><span style="color:var(--muted)">Chưa xếp chỗ</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+            <div class="row" style="grid-template-columns:.8fr 1.4fr .7fr 1fr 1.2fr 1.3fr .9fr 1.1fr"><span><b>SV006</b></span><span>Đỗ Thị Phương</span><span>CNTT02</span><span>CNTT</span><span>0912345676</span><span><b>C101</b> · G1</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Xóa</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-07 -->
+<section id="wf07">
+  <h2>WF-07 · Duyệt đơn &amp; gán giường</h2>
+  <p class="note">Quản lý chọn phòng còn trống, chọn giường cụ thể và ghi chú duyệt.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item">🏢 Tòa nhà</div><div class="item">🛏️ Phòng &amp; giường</div><div class="item">🎓 Sinh viên</div><div class="item on">📝 Đơn đăng ký</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Đơn đăng ký</b></span><span class="tag">Quản lý KTX</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Quản lý đơn đăng ký</h3><p>Duyệt đơn, chọn giường và xếp chỗ cho sinh viên.</p></div></div>
+          <div class="filters"><div class="fld">Trạng thái: Chờ duyệt ▾</div><div class="fld" style="min-width:180px">🔍 MSSV, họ tên, lớp…</div></div>
+          <div class="table">
+            <div class="row h" style="grid-template-columns:1.4fr 1fr .8fr .8fr 1.1fr 1.3fr"><span>Sinh viên</span><span>Phòng mong muốn</span><span>Ngày gửi</span><span>Trạng thái</span><span>Xếp chỗ</span><span>Thao tác</span></div>
+            <div class="row" style="grid-template-columns:1.4fr 1fr .8fr .8fr 1.1fr 1.3fr"><span><b>Phạm Thị Dung</b><br><span style="color:var(--muted)">SV004 · KT02</span></span><span>B101</span><span>06/11</span><span class="badge y">Chờ duyệt</span><span style="color:var(--muted)">—</span><span><span class="btn sm" style="background:#16a34a;color:#fff;border-color:#16a34a">Duyệt</span> <span class="btn sm" style="background:#dc2626;color:#fff;border-color:#dc2626">Từ chối</span></span></div>
+            <div class="row" style="grid-template-columns:1.4fr 1fr .8fr .8fr 1.1fr 1.3fr"><span><b>Hoàng Văn Em</b><br><span style="color:var(--muted)">SV005 · CNTT02</span></span><span>A102</span><span>07/11</span><span class="badge y">Chờ duyệt</span><span style="color:var(--muted)">—</span><span><span class="btn sm" style="background:#16a34a;color:#fff;border-color:#16a34a">Duyệt</span> <span class="btn sm" style="background:#dc2626;color:#fff;border-color:#dc2626">Từ chối</span></span></div>
+          </div>
+          <div class="modalwrap" style="margin-top:14px">
+            <div class="modal" style="width:min(700px,100%)">
+              <div class="mh"><span>Duyệt đơn của Phạm Thị Dung (SV004)</span><span>×</span></div>
+              <div class="mb">
+                <div style="font-size:11px">
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Sinh viên</span><b>Phạm Thị Dung</b></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">MSSV / Lớp</span><b>SV004 · KT02</b></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Phòng mong muốn</span><b>B101</b></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0"><span style="color:var(--muted)">Ghi chú của SV</span><b>Muốn ở gần bạn cùng lớp</b></div>
+                </div>
+                <div>
+                  <span class="lbl">Chọn phòng *</span><div class="input" style="margin-bottom:8px"></div>
+                  <span class="lbl">Chọn giường *</span><div class="input" style="margin-bottom:8px"></div>
+                  <span class="lbl">Ghi chú duyệt</span><div class="input area"></div>
+                </div>
+              </div>
+              <div class="mf"><span class="btn">Hủy</span><span class="btn" style="background:#16a34a;border-color:#16a34a;color:#fff">Duyệt &amp; xếp chỗ</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-08 -->
+<section id="wf08">
+  <h2>WF-08 · Phòng còn trống (sinh viên)</h2>
+  <p class="note">Lưới thẻ phòng; bấm “Đăng ký phòng này” chuyển sang màn hình gửi đơn với phòng chọn sẵn.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Dành cho sinh viên</div>
+        <div class="item on">🔎 Phòng trống</div><div class="item">📝 Đơn đăng ký</div><div class="item">👤 Hồ sơ của tôi</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Phòng trống</b></span><span class="tag">Sinh viên</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Phòng còn trống</h3><p>Tìm phòng phù hợp và gửi đơn đăng ký ở ký túc xá.</p></div></div>
+          <div class="filters"><div class="fld">Tòa nhà: Tất cả ▾</div><div class="fld" style="min-width:180px">🔍 Mã phòng, tên phòng…</div></div>
+          <div class="roomgrid">
+            <div class="room"><div class="rh"><span>A101<br><span style="font-weight:400;font-size:9.5px;color:var(--muted)">Tòa nhà A</span></span><span class="badge g">2 giường trống</span></div>
+              <div class="rb"><div class="r"><span>Tầng</span><b>1</b></div><div class="r"><span>Sức chứa</span><b>4 người</b></div><div class="r"><span>Đã ở</span><b>2/4</b></div><div class="r"><span>Giá</span><b>1.200.000đ</b></div><div class="btn pri" style="text-align:center;margin-top:3px">Đăng ký phòng này</div></div></div>
+            <div class="room"><div class="rh"><span>A102<br><span style="font-weight:400;font-size:9.5px;color:var(--muted)">Tòa nhà A</span></span><span class="badge g">4 giường trống</span></div>
+              <div class="rb"><div class="r"><span>Tầng</span><b>1</b></div><div class="r"><span>Sức chứa</span><b>4 người</b></div><div class="r"><span>Đã ở</span><b>0/4</b></div><div class="r"><span>Giá</span><b>1.200.000đ</b></div><div class="btn pri" style="text-align:center;margin-top:3px">Đăng ký phòng này</div></div></div>
+            <div class="room"><div class="rh"><span>B101<br><span style="font-weight:400;font-size:9.5px;color:var(--muted)">Tòa nhà B</span></span><span class="badge g">3 giường trống</span></div>
+              <div class="rb"><div class="r"><span>Tầng</span><b>1</b></div><div class="r"><span>Sức chứa</span><b>4 người</b></div><div class="r"><span>Đã ở</span><b>1/4</b></div><div class="r"><span>Giá</span><b>1.200.000đ</b></div><div class="btn pri" style="text-align:center;margin-top:3px">Đăng ký phòng này</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-09 -->
+<section id="wf09">
+  <h2>WF-09 · Đơn đăng ký (sinh viên)</h2>
+  <p class="note">Form gửi đơn bên trái, danh sách đơn của tôi bên phải. Form bị khóa nếu đã có chỗ hoặc đang chờ duyệt.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Dành cho sinh viên</div>
+        <div class="item">🔎 Phòng trống</div><div class="item on">📝 Đơn đăng ký</div><div class="item">👤 Hồ sơ của tôi</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Đơn đăng ký</b></span><span class="tag">Sinh viên</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Đơn đăng ký ở KTX</h3><p>Gửi đơn đăng ký và theo dõi trạng thái xếp chỗ của bạn.</p></div></div>
+          <div class="grid2">
+            <div class="card"><div class="ch"><span>Gửi đơn đăng ký</span></div>
+              <div class="cb">
+                <div style="border:1px solid #fcd34d;background:#fffbeb;color:#92400e;border-radius:6px;padding:6px 8px;font-size:10.5px;margin-bottom:9px">Bạn đang có một đơn chờ duyệt. Vui lòng chờ quản lý xử lý.</div>
+                <span class="lbl">Phòng mong muốn</span><div class="input" style="margin-bottom:8px;background:var(--fill)"></div>
+                <span class="lbl">Ghi chú</span><div class="input area" style="background:var(--fill)"></div>
+                <div style="text-align:right;margin-top:9px"><span class="btn" style="opacity:.55">Gửi đơn đăng ký</span></div>
+              </div>
+            </div>
+            <div class="card"><div class="ch"><span>Đơn của tôi</span><span class="badge">2 đơn</span></div>
+              <div class="table" style="border:none;border-radius:0">
+                <div class="row h" style="grid-template-columns:1fr .8fr .9fr .8fr"><span>Phòng</span><span>Ngày</span><span>Trạng thái</span><span>Thao tác</span></div>
+                <div class="row" style="grid-template-columns:1fr .8fr .9fr .8fr"><span>B101</span><span>06/11</span><span class="badge y">Chờ duyệt</span><span class="btn sm">Hủy đơn</span></div>
+                <div class="row" style="grid-template-columns:1fr .8fr .9fr .8fr"><span>A102</span><span>20/10</span><span class="badge r">Từ chối</span><span style="color:var(--muted)">—</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-10 -->
+<section id="wf10">
+  <h2>WF-10 · Hồ sơ của tôi (sinh viên)</h2>
+  <p class="note">Chỉ xem, không sửa. Hai thẻ: thông tin cá nhân và liên hệ/nơi ở.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Dành cho sinh viên</div>
+        <div class="item">🔎 Phòng trống</div><div class="item">📝 Đơn đăng ký</div><div class="item on">👤 Hồ sơ của tôi</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Hồ sơ của tôi</b></span><span class="tag">Sinh viên</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Hồ sơ của tôi</h3><p>Thông tin cá nhân và tình trạng nội trú của bạn.</p></div></div>
+          <div class="grid2">
+            <div class="card"><div class="ch"><span>Thông tin cá nhân</span><span class="badge g">Đang hoạt động</span></div>
+              <div class="cb" style="font-size:11px">
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">MSSV</span><b>SV001</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Họ tên</span><b>Nguyễn Văn An</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Giới tính</span><b>Nam</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Ngày sinh</span><b>12/01/2005</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Lớp</span><b>CNTT01</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0"><span style="color:var(--muted)">Khoa</span><b>Khoa CNTT</b></div>
+              </div>
+            </div>
+            <div class="card"><div class="ch"><span>Liên hệ &amp; nơi ở</span></div>
+              <div class="cb" style="font-size:11px">
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Số điện thoại</span><b>0912345671</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Email</span><b>an.nv@example.com</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Địa chỉ</span><b>Hà Nội</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Tòa nhà</span><b>Tòa nhà A</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--soft)"><span style="color:var(--muted)">Phòng</span><b>A101</b></div>
+                <div style="display:flex;justify-content:space-between;padding:5px 0"><span style="color:var(--muted)">Giường</span><b>G1</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WF-11 -->
+<section id="wf11">
+  <h2>WF-11 · Quản lý người dùng (admin)</h2>
+  <p class="note">Chỉ admin thấy menu này. Modal tạo tài khoản yêu cầu liên kết hồ sơ khi vai trò là sinh viên.</p>
+  <div class="frame">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="shell">
+      <div class="side">
+        <div class="brand">🏠 QLKTX</div>
+        <div class="grp">Nghiệp vụ KTX</div>
+        <div class="item">🏢 Tòa nhà</div><div class="item">🛏️ Phòng &amp; giường</div><div class="item">🎓 Sinh viên</div><div class="item">📝 Đơn đăng ký</div>
+        <div class="grp">Quản trị hệ thống</div><div class="item on">👥 Người dùng</div>
+        <div class="spacer"></div><div class="out">⏻ Đăng xuất</div>
+      </div>
+      <div class="main">
+        <div class="top"><span><b>Người dùng</b></span><span class="tag">Quản trị viên</span></div>
+        <div class="body">
+          <div class="ph"><div><h3>Quản lý người dùng</h3><p>Tạo tài khoản, phân vai trò và liên kết hồ sơ sinh viên.</p></div><div class="btn pri">+ Thêm tài khoản</div></div>
+          <div class="filters"><div class="fld">Vai trò: Tất cả ▾</div><div class="fld" style="min-width:190px">🔍 Tên đăng nhập, họ tên, MSSV…</div></div>
+          <div class="table">
+            <div class="row h" style="grid-template-columns:.9fr 1.4fr 1fr 1.3fr 1fr 1.6fr"><span>Tên ĐN</span><span>Họ tên</span><span>Vai trò</span><span>Liên kết SV</span><span>Trạng thái</span><span>Thao tác</span></div>
+            <div class="row" style="grid-template-columns:.9fr 1.4fr 1fr 1.3fr 1fr 1.6fr"><span><b>admin</b></span><span>Quản trị viên</span><span class="badge r">Quản trị viên</span><span style="color:var(--muted)">—</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Đặt lại MK</span></span></div>
+            <div class="row" style="grid-template-columns:.9fr 1.4fr 1fr 1.3fr 1fr 1.6fr"><span><b>quanly</b></span><span>Nguyễn Thị Quản Lý</span><span class="badge">Quản lý KTX</span><span style="color:var(--muted)">—</span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Đặt lại MK</span></span></div>
+            <div class="row" style="grid-template-columns:.9fr 1.4fr 1fr 1.3fr 1fr 1.6fr"><span><b>sv01</b></span><span>Nguyễn Văn An</span><span class="badge g">Sinh viên</span><span><b>SV001</b><br><span style="color:var(--muted)">Nguyễn Văn An</span></span><span class="badge g">Hoạt động</span><span><span class="btn sm">Sửa</span> <span class="btn sm">Đặt lại MK</span> <span class="btn sm">Xóa</span></span></div>
+          </div>
+          <div class="modalwrap" style="margin-top:14px">
+            <div class="modal">
+              <div class="mh"><span>Thêm tài khoản</span><span>×</span></div>
+              <div class="mb">
+                <div><span class="lbl">Tên đăng nhập *</span><div class="input"></div></div>
+                <div><span class="lbl">Mật khẩu *</span><div class="input"></div></div>
+                <div><span class="lbl">Họ tên *</span><div class="input"></div></div>
+                <div><span class="lbl">Vai trò</span><div class="input"></div></div>
+                <div><span class="lbl">Email</span><div class="input"></div></div>
+                <div><span class="lbl">Số điện thoại</span><div class="input"></div></div>
+                <div class="span2"><span class="lbl">Liên kết hồ sơ sinh viên * (khi vai trò = sinh viên)</span><div class="input"></div></div>
+                <div class="span2" style="font-size:10.5px">☑ Tài khoản đang hoạt động</div>
+              </div>
+              <div class="mf"><span class="btn">Hủy</span><span class="btn pri">Lưu</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<div class="foot">Ghi chú: đây là wireframe low-fidelity dùng để thống nhất bố cục và luồng thao tác. Giao diện thật (React) giữ nguyên cấu trúc, bổ sung màu sắc, icon và trạng thái tương tác.</div>
+</body>
+</html>

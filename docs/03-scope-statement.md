@@ -4,7 +4,7 @@
 |---|---|
 | Tên dự án | Hệ thống Quản lý Ký túc xá (QLKTX) |
 | Mã dự án | IT3180 – Nhóm 10 |
-| Khách hàng | Cô Nguyễn Thị Quản Lý – Quản lý Ký túc xá |
+| Khách hàng | Cô Phạm Hiền – Quản lý Ký túc xá |
 | Project Manager | Phạm Mạnh Hùng |
 | Thời gian | 27/10/2026 – 21/12/2026 (4 sprint) |
 | Phiên bản | 1.0 – 30/10/2026 |

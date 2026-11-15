@@ -4,7 +4,7 @@
 |---|---|
 | Dự án | Hệ thống Quản lý Ký túc xá (QLKTX) |
 | Mã dự án | IT3180 – Nhóm 10 |
-| Khách hàng | Cô Nguyễn Thị Quản Lý – Quản lý Ký túc xá |
+| Khách hàng | Cô Phạm Hiền – Quản lý Ký túc xá |
 | Người phỏng vấn | Hà Văn Hùng (BA) |
 | Thành phần tham gia | Hà Văn Hùng, Phan Phạm Tuấn Anh, Ngô Đức Thắng |
 | Thời gian | 14:00 – 16:00, ngày 28/10/2026 |
@@ -204,7 +204,7 @@
 
 | Bên | Họ tên | Vai trò | Xác nhận |
 |---|---|---|---|
-| Khách hàng | Nguyễn Thị Quản Lý | Quản lý KTX | ☐ Đồng ý  ☐ Cần chỉnh sửa |
+| Khách hàng | Phạm Hiền | Quản lý KTX | ☐ Đồng ý  ☐ Cần chỉnh sửa |
 | Nhóm trưởng | Phạm Mạnh Hùng | Project Manager | ☑ Đã rà soát |
 | BA | Hà Văn Hùng | Phân tích | ☑ Đã hoàn thiện |
 
