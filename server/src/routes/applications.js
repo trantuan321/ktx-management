@@ -1,3 +1,4 @@
+// Module đăng ký ở
 import { Router } from 'express';
 import { db, transaction } from '../db.js';
 import { authenticate, authorize } from '../middleware.js';
